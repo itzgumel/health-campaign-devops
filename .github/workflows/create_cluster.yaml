@@ -122,7 +122,12 @@ jobs:
         with:
           yaml-file: infra-as-code/terraform/sample-aws/input.yaml
           debug: true # Optional: set to true to output some debug information
-      # Now, use the env vars in subsequent steps     
+      # Now, use the env vars in subsequent steps 
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "^1.3.7"
+          terraform_wrapper: false    
       - name: Terraform Init - remotestate
         id: init
         run: terraform init
