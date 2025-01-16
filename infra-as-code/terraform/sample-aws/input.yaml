@@ -7,7 +7,7 @@ cluster_name: "testhealth-k8supgrade"
 ssh_key_name: "testhealth-k8supgrade-ssh-key" 
 
 # Replace with public key which you want to add in your EC2 machines # ssh key which you want to add in your EC2 machines
-public_ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCHcOtwON5v3csYdki9DW1n2BkC2GmzeD86rTkCKSu9GWQOw8PdGabMfppvvjYlmOLlu+WzhM6+eHUXhtS6FaMert71oHUh/mvzb3KC4VJ1ZhpZXMyvbqV2RoOyrseUqwShaTfaH+BypFBaZm52tP1gzfAzSY68UWiQnUXhiNBBfjHhFbfnehEDeN0VZSiH1L27n8Ng2S6xLwZ8ovCOBukJuQ9Q0c5LqV4Nu6YYSERE0qMIDHIM7qvDWMsv8WOe32uBrUW99Tp9+Y0EAnylfS/FvnEh0zT1h5cRjoXYOOOQ0b4eR8qBbY4Zwod2ZKZ8mfzvkUci3qAp4AfLEWYkUe9x"
+public_ssh_key: "ssh-rsa ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCEf+1fGy7hIeGp/As8TbPvDfKgEXXHFJMWePb7khiJGQnbHMpycp8YvQmihpbv7IydXsvAXVNgHpzmwenddPywuLMxpWshWAYMF5yID9Es5nddvxjlBS9vwEo6A3Bitj1tXoY6gwwPOZwvXqh0igxEMT9vmE4xTl4TIJQFLZ3ptwNbt5nWZUE7ohseEXEMDSPXztPCDS79Vt+UQhCG6RJjdYhdJ2PaphWeOhdzIf8RvklRESJx2rjNqbEtVEU7Edpy9hZLgEseNa3lswiCS53ls3hmXgxAzCbWMKxm3ReMCqFUnued+gkY79/k6mLZ9oWIAOdFo6flPJvQpONNMwIh"
 
 # Name you want to give to your Database
 # DB name must contain only alphanumeric characters
@@ -18,7 +18,7 @@ db_name: "testhealthdb"
 db_username: "testhealth" 
 
 # Replace with Domain name you want for your web applications
-domain_name: "test-health.digit.org"
+domain_name: "digit.gumelfoundation.org"
 
 # Replace with the name you want to give to your S3 bucket which is used to store the terraform states
 terraform_state_bucket_name: "testhealth-k8supgrade-digit-buckets"

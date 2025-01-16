@@ -93,7 +93,7 @@ func main() {
 		//var version string = ""
 		//version, _ = sel(versionfiles, "Which version of the product would like to install, Select below")
 		//if version != "" {
-		argFile := releaseChartDir + product + "/dependancy_chart-" + "health-demo-v1.5" + ".yaml"
+		argFile := releaseChartDir + product + "/dependancy_chart-" + "health-demo-v1.6" + ".yaml"
 
 		// Decode the yaml file and assigning the values to a map
 		chartFile, err := ioutil.ReadFile(argFile)
@@ -123,6 +123,7 @@ func main() {
 		//if err == nil {
 		//for result != "Exit" && err == nil {
 		selectedMod = append(selectedMod, "m_health", "m_pgr")
+		selectedMod = append(selectedMod, "m_pgr")
 		//fmt.Println("selected modules", result)
 		//result, err = sel(modules, "Select the modules you want to install, choose Exit to complete selection")
 		//}
