@@ -3,7 +3,6 @@ global:
    setup: fullsetup
 
 cluster-configs:
-<<<<<<< HEAD:config-as-code/environments/egov-demo.yaml
     namespaces:  
       create: true
       values: [ backbone, cert-manager, egov, es-cluster, kafka-kraft, logging, monitoring, playground, zookeeper-cluster ]
