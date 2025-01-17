@@ -40,7 +40,6 @@ cluster-configs:
                 timezone: "UTC"
                 tracer-errors-provideexceptionindetails: "true"
                 egov-internal-microservice-user-uuid: fa0f820c-49df-46bb-8e62-8a0ec5d9af5e
-=======
   namespaces:
     create: true
     values: [ backbone, cert-manager, egov, es-cluster, kafka-cluster, logging, monitoring, playground, zookeeper-cluster ]
@@ -186,7 +185,6 @@ cluster-configs:
         facility: "http://facility:8080/"
         service-request: "http://service-request:8080/"
         health-hrms: "http://health-hrms:8080/"
->>>>>>> f0f36139 (added health-hrms in config map):deploy-as-code/helm/environments/health-demo.yaml
 
         egov-service-host:
             namespace: [ egov, monitoring ]
