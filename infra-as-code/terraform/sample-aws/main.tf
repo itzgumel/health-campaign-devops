@@ -25,7 +25,7 @@ module "db" {
   availability_zone             = "${element(var.availability_zones, 0)}"
   instance_class                = "db.t3.medium"  ## postgres db instance type
   engine_version                = "15.7"   ## postgres version
-  storage_type                  = "gp3"
+  storage_type                  = "gp2"
   storage_gb                    = "10"     ## postgres disk size
   backup_retention_days         = "7"
   administrator_login           = "${var.db_username}"
@@ -159,18 +159,21 @@ resource "aws_security_group_rule" "rds_db_ingress_workers" {
 resource "aws_eks_addon" "kube_proxy" {
   cluster_name      = data.aws_eks_cluster.cluster.name
   addon_name        = "kube-proxy"
-  resolve_conflicts = "OVERWRITE"
+  resolve_conflicts_on_create = "OVERWRITE"
+  resolve_conflicts_on_update = "OVERWRITE"
 }
 resource "aws_eks_addon" "core_dns" {
   cluster_name      = data.aws_eks_cluster.cluster.name
   addon_name        = "coredns"
-  resolve_conflicts = "OVERWRITE"
+  resolve_conflicts_on_create = "OVERWRITE"
+  resolve_conflicts_on_update = "OVERWRITE"
 }
 resource "aws_eks_addon" "aws_ebs_csi_driver" {
   cluster_name      = data.aws_eks_cluster.cluster.name
   addon_name        = "aws-ebs-csi-driver"
   addon_version     = "v1.32.0-eksbuild.1"
-  resolve_conflicts = "OVERWRITE"
+  resolve_conflicts_on_create = "OVERWRITE"
+  resolve_conflicts_on_update = "OVERWRITE"
 }
 
 module "es-master" {
@@ -180,7 +183,7 @@ module "es-master" {
   environment = "${var.cluster_name}"
   disk_prefix = "es-master"
   availability_zones = "${var.availability_zones}"
-  storage_sku = "gp3"
+  storage_sku = "gp2"
   disk_size_gb = "2"
   
 }
@@ -191,7 +194,7 @@ module "es-data-v1" {
   environment = "${var.cluster_name}"
   disk_prefix = "es-data-v1"
   availability_zones = "${var.availability_zones}"
-  storage_sku = "gp3"
+  storage_sku = "gp2"
   disk_size_gb = "25"
   
 }
