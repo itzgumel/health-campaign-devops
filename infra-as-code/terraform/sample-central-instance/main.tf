@@ -20,7 +20,7 @@ module "db" {
   availability_zone             = "${element(var.availability_zones, 0)}"
   instance_class                = "db.t3.medium"
   engine_version                = "11.15"
-  storage_type                  = "gp2"
+  storage_type                  = "gp3"
   storage_gb                    = "100"
   backup_retention_days         = "7"
   administrator_login           = "mgramsevauat"
@@ -84,7 +84,7 @@ module "es-master" {
   environment = "${var.cluster_name}"
   disk_prefix = "es-master"
   availability_zones = "${var.availability_zones}"
-  storage_sku = "gp2"
+  storage_sku = "gp3"
   disk_size_gb = "2"
   
 }
@@ -95,7 +95,7 @@ module "es-data-v1" {
   environment = "${var.cluster_name}"
   disk_prefix = "es-data-v1"
   availability_zones = "${var.availability_zones}"
-  storage_sku = "gp2"
+  storage_sku = "gp3"
   disk_size_gb = "25"
   
 }
@@ -107,7 +107,7 @@ module "zookeeper" {
   environment = "${var.cluster_name}"
   disk_prefix = "zookeeper"
   availability_zones = "${var.availability_zones}"
-  storage_sku = "gp2"
+  storage_sku = "gp3"
   disk_size_gb = "2"
   
 }
@@ -119,7 +119,7 @@ module "kafka" {
   environment = "${var.cluster_name}"
   disk_prefix = "kafka"
   availability_zones = "${var.availability_zones}"
-  storage_sku = "gp2"
+  storage_sku = "gp3"
   disk_size_gb = "50"
   
 }

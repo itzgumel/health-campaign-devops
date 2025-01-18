@@ -66,7 +66,7 @@ module "jenkins" {
   environment = "${var.cluster_name}"
   disk_prefix = "jenkins-home"
   availability_zones = "${var.availability_zones}"
-  storage_sku = "gp2"
+  storage_sku = "gp3"
   disk_size_gb = "50"
   
 }
