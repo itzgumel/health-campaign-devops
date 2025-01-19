@@ -57,36 +57,36 @@ provider "kubernetes" {
 
 module "eks" {
   source          = "terraform-aws-modules/eks/aws"
-  version         = "18.0.0"
-  cluster_name    = "${var.cluster_name}"
-  vpc_id          = "${module.network.vpc_id}"
-  cluster_version = "${var.kubernetes_version}"
-  subnets         = "${concat(module.network.private_subnets, module.network.public_subnets)}"
+  version         = "19.0.0"
+  cluster_name    = var.cluster_name
+  vpc_id          = module.network.vpc_id
+  cluster_version = var.kubernetes_version
 
-##By default worker groups is Configured with SPOT, As per your requirement you can below values.
+  vpc_config = {
+    subnet_ids = concat(module.network.private_subnets, module.network.public_subnets)
+  }
 
-  worker_groups = [
+  # Replacing `worker_groups` with `self_managed_node_groups`
+  self_managed_node_groups = [
     {
       name                          = "spot"
-      ami_id                        = "ami-01d4aea4600d4dd60"   
-      subnets                       = "${concat(slice(module.network.private_subnets, 0, length(var.availability_zones)))}"
-      instance_type                 = "${var.instance_type}"
-      override_instance_types       = "${var.override_instance_types}"
+      ami_id                        = "ami-01d4aea4600d4dd60"
+      subnets                       = slice(module.network.private_subnets, 0, length(var.availability_zones))
+      instance_type                 = var.instance_type
+      override_instance_types       = var.override_instance_types
       kubelet_extra_args            = "--node-labels=node.kubernetes.io/lifecycle=spot"
-      asg_max_size                  = "${var.number_of_worker_nodes}"
-      asg_desired_capacity          = "${var.number_of_worker_nodes}"
+      asg_max_size                  = var.number_of_worker_nodes
+      asg_desired_capacity          = var.number_of_worker_nodes
       spot_allocation_strategy      = "capacity-optimized"
       spot_instance_pools           = null
     }
   ]
-  tags = "${
-    tomap({
-      "kubernetes.io/cluster/${var.cluster_name}" = "owned",
-      "KubernetesCluster" = "${var.cluster_name}"
-    })
-  }"
-}
 
+  tags = {
+    "kubernetes.io/cluster/${var.cluster_name}" = "owned"
+    "KubernetesCluster"                         = var.cluster_name
+  }
+}
 resource "aws_iam_role" "eks_iam" {
   name = "${var.cluster_name}-eks"
 
