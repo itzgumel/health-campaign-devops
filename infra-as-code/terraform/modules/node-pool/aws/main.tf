@@ -41,9 +41,7 @@ data "aws_ami" "eks_worker" {
   most_recent = true
   owners      = ["602401143452"] # Amazon EKS AMI Account ID
 }
-locals {
-  launch_template_name = var.cluster_name
-}
+
 
 resource "aws_launch_template" "launch_template" {
   name              = "template-${var.node_group_name}"
