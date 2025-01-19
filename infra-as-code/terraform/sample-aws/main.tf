@@ -61,7 +61,10 @@ module "eks" {
   cluster_name    = "${var.cluster_name}"
   vpc_id          = "${module.network.vpc_id}"
   cluster_version = "${var.kubernetes_version}"
-  cluster_subnets = "${concat(module.network.private_subnets, module.network.public_subnets)}"
+  
+  vpc_config = {
+    subnet_ids = "${concat(module.network.private_subnets, module.network.public_subnets)}"
+  }
 
 ##By default worker groups is Configured with SPOT, As per your requirement you can below values.
 
