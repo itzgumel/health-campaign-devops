@@ -17,8 +17,28 @@ output "cluster_endpoint" {
 }
 
 output "kubectl_config" {
-  value = module.eks.kubeconfig[0].value
+  value = <<-EOT
+    apiVersion: v1
+    clusters:
+    - cluster:
+        server: ${data.aws_eks_cluster.cluster.endpoint}
+        certificate-authority-data: ${data.aws_eks_cluster.cluster.certificate_authority[0].data}
+      name: ${module.eks.cluster_name}
+    contexts:
+    - context:
+        cluster: ${module.eks.cluster_name}
+        user: ${module.eks.cluster_name}
+      name: ${module.eks.cluster_name}
+    current-context: ${module.eks.cluster_name}
+    kind: Config
+    preferences: {}
+    users:
+    - name: ${module.eks.cluster_name}
+      user:
+        token: ${data.aws_eks_cluster_auth.cluster.token}
+  EOT
 }
+
 
 
 output "es_master_volume_ids" {
