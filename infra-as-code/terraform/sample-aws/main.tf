@@ -61,10 +61,7 @@ module "eks" {
   cluster_name    = var.cluster_name
   vpc_id          = module.network.vpc_id
   cluster_version = var.kubernetes_version
-
-  vpc_config = {
-    subnet_ids = concat(module.network.private_subnets, module.network.public_subnets)
-  }
+  subnets = concat(module.network.private_subnets, module.network.public_subnets)
 
   # Replacing `worker_groups` with `self_managed_node_groups`
   self_managed_node_groups = [
