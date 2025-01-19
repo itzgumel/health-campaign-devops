@@ -57,14 +57,15 @@ provider "kubernetes" {
 
 module "eks" {
   source          = "terraform-aws-modules/eks/aws"
-  version         = "19.0.0"
+  version         = "18.0.0"
   cluster_name    = "${var.cluster_name}"
   vpc_id          = "${module.network.vpc_id}"
   cluster_version = "${var.kubernetes_version}"
+  subnets         = "${concat(module.network.private_subnets, module.network.public_subnets)}"
 
 ##By default worker groups is Configured with SPOT, As per your requirement you can below values.
 
-  self_managed_node_groups = [
+  worker_groups = [
     {
       name                          = "spot"
       ami_id                        = "ami-01d4aea4600d4dd60"   
