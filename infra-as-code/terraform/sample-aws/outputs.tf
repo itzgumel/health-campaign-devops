@@ -17,7 +17,7 @@ output "cluster_endpoint" {
 }
 
 output "kubectl_config" {
-  value = module.eks.kubeconfig__content
+  value = "${module.eks.kubeconfig}"
 }
 
 
