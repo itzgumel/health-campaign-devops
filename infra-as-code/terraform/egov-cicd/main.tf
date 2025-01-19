@@ -35,12 +35,12 @@ module "eks" {
   cluster_name    = "${var.cluster_name}"
   vpc_id          = "${module.network.vpc_id}"
   cluster_version = "${var.kubernetes_version}"
-  subnets         = "${concat(module.network.private_subnets, module.network.public_subnets)}"
+  cluster_subnets         = "${concat(module.network.private_subnets, module.network.public_subnets)}"
 
-  worker_groups = [
+  self_managed_node_groups = [
     {
       name                          = "spot"
-      subnets                       = "${concat(slice(module.network.private_subnets, 0, length(var.availability_zones)))}"
+      cluster_subnets                       = "${concat(slice(module.network.private_subnets, 0, length(var.availability_zones)))}"
       override_instance_types       = "${var.override_instance_types}"
       kubelet_extra_args            = "--node-labels=node.kubernetes.io/lifecycle=spot"
       additional_security_group_ids = ["${module.network.worker_nodes_sg_id}"]
