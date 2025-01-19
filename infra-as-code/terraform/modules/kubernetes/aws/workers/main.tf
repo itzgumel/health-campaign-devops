@@ -53,7 +53,7 @@ data "aws_ami" "eks_worker" {
   }
 
   most_recent = true
-  owners      = ["602401143452"] # Amazon EKS AMI Account ID
+  owners      = ["602401143452"] # Amazon EKS AMI Account ID 
 }
 
 data "template_file" "user_data_hw" {
