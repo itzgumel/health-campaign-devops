@@ -50,7 +50,7 @@ resource "aws_launch_template" "launch_template" {
   
   image_id          = "${data.aws_ami.eks_worker.id}"
   ebs_optimized     = true
-  name_prefix = length(local.launch_template_name) >= 3 ? local.launch_template_name : "default-prefix"
+  name_prefix = "default-prefix"
   network_interfaces {
     security_groups = var.security_groups
   }
