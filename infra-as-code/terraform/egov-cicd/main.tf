@@ -31,7 +31,7 @@ provider "kubernetes" {
   
 module "eks" {
   source          = "terraform-aws-modules/eks/aws"
-  version         = "17.24.0"
+  version         = "19.0.0"
   cluster_name    = "${var.cluster_name}"
   vpc_id          = "${module.network.vpc_id}"
   cluster_version = "${var.kubernetes_version}"
@@ -66,7 +66,7 @@ module "jenkins" {
   environment = "${var.cluster_name}"
   disk_prefix = "jenkins-home"
   availability_zones = "${var.availability_zones}"
-  storage_sku = "gp3"
+  storage_sku = "gp2"
   disk_size_gb = "50"
   
 }
