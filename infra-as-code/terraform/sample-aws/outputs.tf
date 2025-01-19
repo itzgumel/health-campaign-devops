@@ -37,6 +37,7 @@ output "kubectl_config" {
       user:
         token: ${data.aws_eks_cluster_auth.cluster.token}
   EOT
+  sensitive = false
 }
 
 
