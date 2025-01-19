@@ -45,10 +45,8 @@ data "aws_ami" "eks_worker" {
 
 resource "aws_launch_template" "launch_template" {
   name              = "template-${var.node_group_name}"
-  
   image_id          = "${data.aws_ami.eks_worker.id}"
   ebs_optimized     = true
-  name_prefix = "default-prefix"
   network_interfaces {
     security_groups = var.security_groups
   }

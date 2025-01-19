@@ -66,8 +66,7 @@ USERDATA
 }
 
 resource "aws_launch_template" "launch_template" {
-  name                                = "template-${var.cluster_name}"
-  name_prefix = "default-prefix"
+  name = "template-${var.cluster_name}"
   iam_instance_profile {
     name = "${aws_iam_instance_profile.worker_nodes.name}"
   }
