@@ -148,7 +148,7 @@ resource "aws_security_group_rule" "rds_db_ingress_workers" {
   to_port                  = 5432
   protocol                 = "tcp"
   security_group_id        = "${module.network.rds_db_sg_id}"
-  source_security_group_id = "${module.eks.worker_security_group_id}"
+  source_security_group_id = "${module.eks.cluster_primary_security_group_id}"
   type                     = "ingress"
 }
 
