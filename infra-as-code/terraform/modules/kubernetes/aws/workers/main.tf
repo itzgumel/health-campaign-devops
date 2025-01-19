@@ -56,7 +56,6 @@ data "aws_ami" "eks_worker" {
   owners      = ["602401143452"] # Amazon EKS AMI Account ID
 }
 
-
 data "template_file" "user_data_hw" {
   template = <<USERDATA
 #!/bin/bash
