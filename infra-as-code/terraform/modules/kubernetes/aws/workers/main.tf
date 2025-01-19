@@ -64,9 +64,14 @@ set -o xtrace
 /etc/eks/bootstrap.sh --apiserver-endpoint '${var.eks_cluster.endpoint}' --b64-cluster-ca '${var.eks_cluster.certificate_authority.0.data}' '${var.cluster_name}'
 USERDATA
 }
+locals {
+  launch_template_name = var.cluster_name
+}
+
 
 resource "aws_launch_template" "launch_template" {
   name                                = "template-${var.cluster_name}"
+  name_prefix = length(local.launch_template_name) >= 3 ? local.launch_template_name : "default-prefix"
   iam_instance_profile {
     name = "${aws_iam_instance_profile.worker_nodes.name}"
   }
