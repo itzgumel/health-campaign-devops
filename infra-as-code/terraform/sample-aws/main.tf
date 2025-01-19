@@ -61,11 +61,11 @@ module "eks" {
   cluster_name    = "${var.cluster_name}"
   vpc_id          = "${module.network.vpc_id}"
   cluster_version = "${var.kubernetes_version}"
-  subnets         = "${concat(module.network.private_subnets, module.network.public_subnets)}"
+  cluster_subnets = "${concat(module.network.private_subnets, module.network.public_subnets)}"
 
 ##By default worker groups is Configured with SPOT, As per your requirement you can below values.
 
-  worker_groups = [
+  self_managed_node_groups = [
     {
       name                          = "spot"
       ami_id                        = "ami-01d4aea4600d4dd60"   
