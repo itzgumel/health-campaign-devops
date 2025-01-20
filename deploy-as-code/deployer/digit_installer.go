@@ -118,7 +118,7 @@ func main() {
 				modules = append(modules, s.Name)
 			}*/
 		}
-		//modules = append(modules, "Exit")
+		//modules = append(modules, "Exit") 
 		//result, err := sel(modules, "Select the DIGIT modules that you want to install, choose Exit to complete selection")
 		//if err == nil {
 		//for result != "Exit" && err == nil {
