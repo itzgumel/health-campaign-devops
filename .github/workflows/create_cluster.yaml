@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - kubernetes-1.27
+      - release-githubactions
   workflow_dispatch:
     inputs:
       destroyCommand:
